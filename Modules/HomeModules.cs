@@ -11,7 +11,7 @@ namespace ContactBook
     {
       Get["/"] =_=> {
         var allCrew = Contact.GetAll();
-        return View ["index.cshtml", allCrew];
+        return View ["index.cshtml"];
       };
       Get["/New_contacts"]=_=> {
         return View["New_contacts.cshtml"];
@@ -21,19 +21,18 @@ namespace ContactBook
         var allContacts = Contact.GetAll();
         return View["index.cshtml", allContacts];
       };
-      Get["/index/{id}"] = parameters => {
-        Dictionary<string, object> model = new Dictionary<string, object>();
-        var selectedContact = Contact.Find(parameters.id);
-        var contactinfo = selectedContact.GetAll();
-        model.Add("Contact", selectedContact);
-        model.Add("Info", contactinfo);
-        return View["index.cshtml", model];
-      };
+      // Get["/index/{id}"] = parameters => {
+      //   Dictionary<string, object> model = new Dictionary<string, object>();
+      //   var selectedContact = Contact.Find(parameters.id);
+      //   var contactinfo = selectedContact.GetAll();
+      //   model.Add("Contact", selectedContact);
+      //   model.Add("Info", contactinfo);
+      //   return View["index.cshtml", model];
+      // };
       Get["/clear_contacts"] =_=> {
         Contact.ClearAll();
         return View ["view_all.cshtml"];
       };
-    // };
   }
 }
 }
