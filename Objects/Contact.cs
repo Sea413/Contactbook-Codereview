@@ -6,44 +6,33 @@ namespace ContactBook.Objects
   {
     private static List<Contact> _instances = new List<Contact> {};
     private string _name;
-    private string _address;
-    private string _phone;
     private int _id;
+    private List<cinfo> _contactinfo;
 
-    public Contact(string name, string address, string phone)
+    public Contact(string name)
     {
       _name = name;
       _instances.Add(this);
       _id = _instances.Count;
-      _address = address;
-      _phone = phone;
+      _contactinfo = new List<cinfo>{};
     }
 
-    public string GetContactName()
+    public string GetName()
     {
       return _name;
     }
-    public void SetContactName(string name)
+    public void SetName(string newName)
+  {
+    _name = newName;
+  }
+  public List<cinfo> GetContactinfo()
     {
-      _name = name;
+      return _contactinfo;
     }
-    public string  GetAddress()
+    public void AddCinfo(cinfo cinfo)
     {
-      return _address;
+      _contactinfo.Add(cinfo);
     }
-    public void SetAddress(string address)
-    {
-      _address =address;
-    }
-    public string  GetPhone()
-    {
-      return _phone;
-    }
-    public void SetPhone(string phone)
-    {
-      _phone =phone;
-    }
-
     public int GetId()
     {
       return _id;
