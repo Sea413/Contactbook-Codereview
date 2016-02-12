@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Contact.Objects
+namespace ContactBook.Objects
 {
   public class Contact
   {
@@ -29,7 +29,7 @@ namespace Contact.Objects
     }
     public string  GetAddress()
     {
-      return _artists;
+      return _address;
     }
     public void SetAddress(string address)
     {
@@ -52,13 +52,17 @@ namespace Contact.Objects
     {
       return _instances;
     }
-    public void Save()
+    public void SaveFormat()
     {
-      _instances.Add(_name,_address,_phone);
+      _instances.Add(this);
     }
     public static void ClearAll()
     {
       _instances.Clear();
+    }
+    public static Contact Find(int searchId)
+    {
+      return _instances[searchId-1];
     }
   }
 }

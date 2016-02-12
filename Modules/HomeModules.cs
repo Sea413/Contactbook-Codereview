@@ -1,9 +1,9 @@
 using Nancy;
 using System.Collections.Generic;
 using System;
-using Contact.Objects;
+using ContactBook.Objects;
 
-namespace Contact
+namespace ContactBook
 {
   public class HomeModule : NancyModule
   {
@@ -17,25 +17,20 @@ namespace Contact
         return View["New_contacts.cshtml"];
       };
       Post["/"] = _ => {
-        var newContact = new Contact(Request.Form["Contact-Name"]);
+        var newContact = new Contact(Request.Form["Contact-Name"], Request.Form["Contact-Address"],Request.Form["Contact-Phone"]);
         var allContacts = Contact.GetAll();
-        return View["categories.cshtml", allContacts];
+        return View["index.cshtml", allContacts];
       };
-      Post["/"]=_=>{
-        Contact newContact = new Contact (Request.Form["Cd-Name"],Request.Form["Cd-Artist"]);
-        List<Cd> Cdlist = Cd.GetAll();
-        return View["index.cshtml", Cdlist];
-      };
+      Get["/index/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        var selectedContact = Contact.Find(parameters.id);
+        model.Add("Contact", selectedContact);
+        return View["index.cshtml", model];
       Get["/clear_contacts"] =_=> {
         Contact.ClearAll();
         return View ["view_all.cshtml"];
       };
-      Post["/search"]=_=>{
-        string returnString = Request.Form["searchString"];
-        System.Console.WriteLine(returnString);
-        List<Cd> Cdlist = Cd.SearchAll(returnString);
-        return View["search.cshtml", Cdlist];
-      };
-    }
+    };
   }
+}
 }
