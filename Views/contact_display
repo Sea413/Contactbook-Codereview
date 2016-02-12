@@ -1,6 +1,6 @@
 <h3>Here are all the tasks in this category:</h3>
 <ol>
-@foreach (var task in @Model["Contact"])
+@foreach (var Contact in @Model["Contact"])
 {
   <li>@Contact.GetContactName()</li>
   <li>@Contact.GetAddress()</li>

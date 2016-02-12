@@ -1,27 +1,34 @@
 using Nancy;
 using System.Collections.Generic;
 using System;
-using Cds.Objects;
+using Contact.Objects;
 
-namespace Cds
+namespace Contact
 {
   public class HomeModule : NancyModule
   {
     public HomeModule()
     {
       Get["/"] =_=> {
-        return View ["index.cshtml"];
+        var allCrew = Contact.GetAll();
+        return View ["index.cshtml", allCrew];
       };
-      Get["/new_Cd"]=_=> {
-        return View["new_cd.cshtml"];
+      Get["/New_contacts"]=_=> {
+        return View["New_contacts.cshtml"];
+      };
+      Post["/"] = _ => {
+        var newContact = new Contact(Request.Form["Contact-Name"]);
+        var allContacts = Contact.GetAll();
+        return View["categories.cshtml", allContacts];
       };
       Post["/"]=_=>{
-        Cd newCd = new Cd (Request.Form["Cd-Name"],Request.Form["Cd-Artist"]);
+        Contact newContact = new Contact (Request.Form["Cd-Name"],Request.Form["Cd-Artist"]);
         List<Cd> Cdlist = Cd.GetAll();
         return View["index.cshtml", Cdlist];
       };
-      Get["/search"]=_=> {
-        return View["search.cshtml"];
+      Get["/clear_contacts"] =_=> {
+        Contact.ClearAll();
+        return View ["view_all.cshtml"];
       };
       Post["/search"]=_=>{
         string returnString = Request.Form["searchString"];
