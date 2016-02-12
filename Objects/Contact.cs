@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Contacts.Objects
+namespace Contact.Objects
 {
   public class Contact
   {
@@ -54,7 +54,7 @@ namespace Contacts.Objects
     }
     public void Save()
     {
-      _instances.Add(_name,_address,phone);
+      _instances.Add(_name,_address,_phone);
     }
     public static void ClearAll()
     {

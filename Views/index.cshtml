@@ -1,6 +1,6 @@
 <h1>Please enter your crews information!</h1>
 
-<a href="/new_cd">Click here to add your new crew member!</a>
+<a href="/New_contacts">Click here to add your new crew member!</a>
 
 @{
   if (Model == null )
@@ -11,13 +11,13 @@
   {
     foreach (var Contact in Model)
     {
-  <h3><a href='/Contact/@Cd.GetId()'>@Contact.GetCdName()</a></h3>
+  <h3><a href='/index/@Contact.GetId()'>@Contact.GetContactName()</a></h3>
     }
   }
 }
 <p>
-  <a href="/search">View all of your wonderful crew!</a>
+  <a href="/view_all">View all of your wonderful crew!</a>
 </p>
 <p>
-  <a href="/clear_categories">Add a new member to the ranks!</a>
+  <a href="/New_contacts">Add a new member to the ranks!</a>
 </p>
