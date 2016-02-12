@@ -1,23 +1,23 @@
-<h1>Welcome to the amazing Cd Shop!</h1>
+<h1>Please enter your crews information!</h1>
 
-<a href="/new_cd">Click here to add your new CD</a>
+<a href="/new_cd">Click here to add your new crew member!</a>
 
 @{
   if (Model == null )
   {
-    <h3>No Cd's have been Added please add one above.</h3>
+    <h3>Your feel is empty this is a sad day!</h3>
   }
   else
   {
-    foreach (var Cd in Model)
+    foreach (var Contact in Model)
     {
-  <h3><a href='/Cd/@Cd.GetId()'>@Cd.GetCdName()</a></h3>
+  <h3><a href='/Contact/@Cd.GetId()'>@Contact.GetCdName()</a></h3>
     }
   }
 }
 <p>
-  <a href="/search">Cd Search</a>
+  <a href="/search">View all of your wonderful crew!</a>
 </p>
 <p>
-  <a href="/clear_categories">Cds clear</a>
+  <a href="/clear_categories">Add a new member to the ranks!</a>
 </p>
