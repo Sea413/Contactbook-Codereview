@@ -1,0 +1,10 @@
+<h3>Here is all the crew information!:</h3>
+<ol>
+@foreach (var Contact in @Model["cinfo"])
+{
+  <li>@Contact.GetContactName()</li>
+  <li>@Contact.GetAddress()</li>
+  <li>@Contact.GetPhone()</li>
+}
+</ol>
+<p><a href='/'>Return to Main Page</a></p>

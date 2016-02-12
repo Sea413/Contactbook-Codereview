@@ -21,14 +21,15 @@ namespace ContactBook
         var allContacts = Contact.GetAll();
         return View["index.cshtml", allContacts];
       };
-      // Get["/index/{id}"] = parameters => {
-      //   Dictionary<string, object> model = new Dictionary<string, object>();
-      //   var selectedContact = Contact.Find(parameters.id);
-      //   var contactinfo = selectedContact.GetAll();
-      //   model.Add("Contact", selectedContact);
-      //   model.Add("Info", contactinfo);
-      //   return View["index.cshtml", model];
-      // };
+      Get["/index/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        var selectedContact = Contact.Find(parameters.id);
+        var testConcept = new cinfo(Request.Form["Contact-Name"],Request.Form["Contact-Address"], Request.Form["Contact-Phone"]);
+        var ContactInformation = selectedContact.GetContactinfo();
+        model.Add("Contact", selectedContact);
+        model.Add("cinfo", ContactInformation);
+        return View["contact_display.cshtml", model];
+      };
       Get["/clear_contacts"] =_=> {
         Contact.ClearAll();
         return View ["view_all.cshtml"];
