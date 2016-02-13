@@ -4,8 +4,8 @@
   <title></title>
 </head>
 <body>
-  <h1>Add a new task to @Model["contact"].GetName()</h1>
-  <form action='/tasks' method='post'>
+  <h1>Add personal information to @Model["contact"].GetName()</h1>
+  <form action='/officers_info_specfic' method='post'>
     <input id='contact-id' name='contact-id' type='hidden' value='@Model["contact"].GetId()'>
     <label for='cinfo-name'>Please Add your wonderful crew member!</label>
     <input id='cinfo-name' name='cinfo-name' type='text'>

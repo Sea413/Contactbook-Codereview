@@ -4,7 +4,7 @@
   <title></title>
 </head>
 <body>
-  <h3>Here are all the tasks in this category:</h3>
+  <h3>Here is all of the officer information:</h3>
   <ul>
   @foreach (var cinfor in @Model["cinfo"])
   {
@@ -13,7 +13,7 @@
     <li>@cinfor.GetPhone()</li>
   }
 </ul>
-  <p><a href='/categories/@Model["contact"].GetId()/tasks/new'>Add more information</a></p>
+  <p><a href='/officers/@Model["contact"].GetId()/officers_info_specfic/new'>Add more information</a></p>
   <p><a href='/'>Return to Main Page</a></p>
 </body>
 </html>
