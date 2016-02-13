@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <h3>Here are all the tasks in this category:</h3>
+  <ol>
+  @foreach (var cinfor in @Model["cinfo"])
+  {
+    <li><a href="/categories/@Model["contact"].GetId()/task/@cinfor.GetId()">@cinfor.GetContactName()</a></li>
+  }
+  </ol>
+  <p><a href='/categories/@Model["contact"].GetId()/tasks/new'>Add more information</a></p>
+  <p><a href='/'>Return to Main Page</a></p>
+</body>
+</html>

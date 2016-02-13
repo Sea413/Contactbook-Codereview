@@ -8,32 +8,71 @@ namespace ContactBook
   public class HomeModule : NancyModule
   {
     public HomeModule()
-    {
-      Get["/"] =_=> {
-        var allCrew = Contact.GetAll();
-        return View ["index.cshtml"];
-      };
-      Get["/New_contacts"]=_=> {
-        return View["New_contacts.cshtml"];
-      };
-      Post["/"] = _ => {
-        var newContact = new Contact(Request.Form["Contact-Name"]);
-        var allContacts = Contact.GetAll();
-        return View["index.cshtml", allContacts];
-      };
-      Get["/index/{id}"] = parameters => {
+      {
+        Get["/"] = _ => {
+            return View["index.cshtml"];
+        };
+        Get["/categories"]=_=> {
+         return View["categories.cshtml"];
+       };
+
+       Get["/categories/new"] = _ => {
+             return View["category_form.cshtml"];
+           };
+       Post["/categories"] = _ => {
+           var newContact = new Contact(Request.Form["contact-name"]);
+           var allContacts = Contact.GetAll();
+           return View["categories.cshtml", allContacts];
+         };
+        Get["/categories/{id}"] = parameters => {
+          Dictionary<string, object> model = new Dictionary<string, object>();
+          var selectedContact = Contact.Find(parameters.id);
+          var contactinfo = selectedContact.GetContactinfo();
+          model.Add("contact", selectedContact);
+          model.Add("cinfo", contactinfo);
+          return View["category.cshtml", model];
+        };
+        // Get["/clear_categories"] =_=> {
+        //   Category.Clear();
+        //   return View ["index.cshtml"];
+        // };
+        //view a task
+        Get["/categories/{id}/task/{taskId}"] = parameters => {
+          Dictionary<string, object> model = new Dictionary<string, object>();
+          Contact selectedContact = Contact.Find(parameters.id);
+          cinfo returncinfo = cinfo.Find(parameters.taskId);
+          model.Add("Contact", selectedContact);
+          model.Add("cinfo", returncinfo);
+          return  View["task.cshtml",model];
+        };
+        Get["/categories/{id}/tasks/new"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>();
-        var selectedContact = Contact.Find(parameters.id);
-        var testConcept = new cinfo(Request.Form["Contact-Name"],Request.Form["Contact-Address"], Request.Form["Contact-Phone"]);
-        var ContactInformation = selectedContact.GetContactinfo();
-        model.Add("Contact", selectedContact);
-        model.Add("cinfo", ContactInformation);
-        return View["contact_display.cshtml", model];
+        Contact selectedContact = Contact.Find(parameters.id);
+        List<cinfo> allcinfo = selectedContact.GetContactinfo();
+        model.Add("contact", selectedContact);
+        model.Add("cinfor", allcinfo);
+        return View["category_tasks.cshtml", model];
       };
-      Get["/clear_contacts"] =_=> {
-        Contact.ClearAll();
-        return View ["view_all.cshtml"];
-      };
+        Post["/categories/{id}/task/{taskId}"] = parameters => {
+          Dictionary<string, object> model = new Dictionary<string, object>();
+          var selectedContact = Contact.Find(parameters.id);
+          var contactCinfo = selectedContact.GetContactinfo();
+          cinfo cinfos = contactCinfo[parameters.taskId-1];
+          model.Add("contact", selectedContact);
+          model.Add("cinfo", contactCinfo);
+          return View["category.cshtml", model];
+        };
+        Post["/tasks"] = _ => {
+          Dictionary<string, object> model = new Dictionary<string, object>();
+          Contact selectedContact = Contact.Find(Request.Form["contact-id"]);
+          List<cinfo> contactinfo = selectedContact.GetContactinfo();
+          string cinfoname = Request.Form["Contact-Name"];
+          cinfo newcinfo = new cinfo(cinfoname);
+          contactinfo.Add(newcinfo);
+          model.Add("cinfo", contactinfo);
+          model.Add("contact", selectedContact);
+          return View["category.cshtml", model];
+        };
+      }
+    }
   }
-}
-}

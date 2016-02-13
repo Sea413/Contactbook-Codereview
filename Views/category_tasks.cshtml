@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <h1>Add a new task to @Model["contact"].GetName()</h1>
+  <form action='/tasks' method='post'>
+    <input id='contact-id' name='contact-id' type='hidden' value='@Model["contact"].GetId()'>
+    <label for='cinfo-name'>Please Add your wonderful crew member!</label>
+    <input id='cinfo-name' name='cinfo-name' type='text'>
+    <button type='submit'>Add contact name</button>
+  </form>
+</body>
+</html>

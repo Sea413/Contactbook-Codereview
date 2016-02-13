@@ -1,20 +1,12 @@
-<h1>Please enter the crew for the next starship enterprise!!</h1>
-
-<a href="/New_contacts">Click here to add your new crew member!</a>
-
-@{
-  if (Model == null )
-  {
-    <h3>Your ship is empty this is a sad day!</h3>
-  }
-  else
-  {
-    foreach (var Contact in Model)
-    {
-  <h3><a href='/index/@Contact.GetId()'>@Contact.GetName()</a></h3>
-    }
-  }
-}
-<p>
-  <a href="/view_all">View all of your wonderful crew!</a>
-</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add New Task</title>
+  </head>
+  <body>
+    <h1>To Do List</h1>
+    <h3><a href='/categories/new'>Add a new contact</a></h3>
+    <h3><a href='/categories'>View contacts</a></h3>
+  </body>
+</html>

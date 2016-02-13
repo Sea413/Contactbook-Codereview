@@ -5,16 +5,16 @@ namespace ContactBook
   public class cinfo
   {
     private string _cname;
-    private string _caddress;
-    private string _cphone;
+    // private string _caddress;
+    // private string _cphone;
     private int _id;
     private static List<cinfo> _instances = new List<cinfo> {};
 
-    public cinfo (string cname, string caddress, string cphone)
+    public cinfo (string cname)
     {
       _cname = cname;
-      _caddress = caddress;
-      _cphone = cphone;
+      // _caddress = caddress;
+      // _cphone = cphone;
       _instances.Add(this);
       _id = _instances.Count;
     }
@@ -27,27 +27,27 @@ namespace ContactBook
     {
       _cname = cname;
     }
-    public string  GetAddress()
-    {
-      return _caddress;
-    }
-    public void SetAddress(string caddress)
-    {
-      _caddress =caddress;
-    }
-    public string  GetPhone()
-    {
-      return _cphone;
-    }
-    public void SetPhone(string cphone)
-    {
-      _cphone =cphone;
-    }
+    // public string  GetAddress()
+    // {
+    //   return _caddress;
+    // }
+    // public void SetAddress(string caddress)
+    // {
+    //   _caddress =caddress;
+    // }
+    // public string  GetPhone()
+    // {
+    //   return _cphone;
+    // }
+    // public void SetPhone(string cphone)
+    // {
+    //   _cphone =cphone;
+    // }
     public int GetId()
     {
       return _id;
     }
-    public static List<cinfo> GetAll()
+    public static List<cinfo> GetMost()
     {
       return _instances;
     }
