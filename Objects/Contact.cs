@@ -22,9 +22,9 @@ namespace ContactBook.Objects
       return _name;
     }
     public void SetName(string newName)
-  {
+    {
     _name = newName;
-  }
+    }
   public List<cinfo> GetContactinfo()
     {
       return _contactinfo;
