@@ -13,7 +13,8 @@ namespace ContactBook
             return View["index.cshtml"];
         };
         Get["/categories"]=_=> {
-         return View["categories.cshtml"];
+          var allContacts = Contact.GetAll();
+         return View["categories.cshtml", allContacts];
        };
 
        Get["/categories/new"] = _ => {
@@ -32,11 +33,10 @@ namespace ContactBook
           model.Add("cinfo", contactinfo);
           return View["category.cshtml", model];
         };
-        // Get["/clear_categories"] =_=> {
-        //   Category.Clear();
-        //   return View ["index.cshtml"];
-        // };
-        //view a task
+        Get["/clear_categories"] =_=> {
+          Contact.ClearAll();
+          return View ["index.cshtml"];
+        };
         Get["/categories/{id}/task/{taskId}"] = parameters => {
           Dictionary<string, object> model = new Dictionary<string, object>();
           Contact selectedContact = Contact.Find(parameters.id);
@@ -66,8 +66,10 @@ namespace ContactBook
           Dictionary<string, object> model = new Dictionary<string, object>();
           Contact selectedContact = Contact.Find(Request.Form["contact-id"]);
           List<cinfo> contactinfo = selectedContact.GetContactinfo();
-          string cinfoname = Request.Form["Contact-Name"];
-          cinfo newcinfo = new cinfo(cinfoname);
+          string cinfoname = Request.Form["cinfo-name"];
+          string caddress = Request.Form["cinfo-address"];
+          string cphone = Request.Form["cinfo-cphone"];
+          cinfo newcinfo = new cinfo(cinfoname,caddress,cphone);
           contactinfo.Add(newcinfo);
           model.Add("cinfo", contactinfo);
           model.Add("contact", selectedContact);
